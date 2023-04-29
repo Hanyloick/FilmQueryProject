@@ -56,17 +56,17 @@ public class Actor {
 		StringBuilder builder = new StringBuilder();
 		builder.append("[id=");
 		builder.append(id);
-		builder.append("\n ");
+		builder.append(" | ");
 		if (firstName != null) {
 			builder.append("firstName=");
 			builder.append(firstName);
-			builder.append("\n ");
+			builder.append(" | ");
 		}
 		if (lastName != null) {
 			builder.append("lastName=");
 			builder.append(lastName + "]");
 		}
-		builder.append(" \n");
+		builder.append(" ");
 		return builder.toString();
 	}
 

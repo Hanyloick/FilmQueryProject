@@ -5,64 +5,58 @@ import java.util.List;
 import java.util.Objects;
 
 public class Film {
-	private int filmId; 
+	private int filmId;
 	private String title;
-	private String desc;
-	private short releaseYear; 
-	private int langId; 
-	private int rentDur; 
+	private String description;
+	private short releaseYear;
+	private int langId;
+	private int rentalDuration;
 	private double rate;
-	private int length; 
-	private double repCost; 
-	private String rating; 
-	private String features;
+	private int length;
+	private double replacementCost;
+	private String rating;
+	private String specialFeatures;
 	private List<Actor> cast;
-	
+	private String language;
+
 	public Film(int filmId, String title, String desc, short releaseYear, int langId, int rentDur, double rate,
 			int length, double repCost, String rating, String features, List<Actor> cast) {
 		super();
 		this.filmId = filmId;
 		this.title = title;
-		this.desc = desc;
+		this.description = desc;
 		this.releaseYear = releaseYear;
 		this.langId = langId;
-		this.rentDur = rentDur;
+		this.rentalDuration = rentDur;
 		this.rate = rate;
 		this.length = length;
-		this.repCost = repCost;
+		this.replacementCost = repCost;
 		this.rating = rating;
-		this.features = features;
-		this.cast = cast;
-	}
-
-	public List<Actor> getCast() {
-		List<Actor> copy = new ArrayList(cast);
-		return copy;
-	}
-
-	public void setCast(List<Actor> cast) {
+		this.specialFeatures = features;
 		this.cast = cast;
 	}
 
 	public Film() {
-		
+
 	}
-	
+
 	public Film(int filmId, String title, String desc, short releaseYear, int langId, int rentDur, double rate,
 			int length, double repCost, String rating, String features) {
 		this.filmId = filmId;
 		this.title = title;
-		this.desc = desc;
+		this.description = desc;
 		this.releaseYear = releaseYear;
 		this.langId = langId;
-		this.rentDur = rentDur;
+		this.rentalDuration = rentDur;
 		this.rate = rate;
 		this.length = length;
-		this.repCost = repCost;
+		this.replacementCost = repCost;
 		this.rating = rating;
-		this.features = features;
+		this.specialFeatures = features;
 	}
-
+	
+	
+	
 	public int getFilmId() {
 		return filmId;
 	}
@@ -79,12 +73,12 @@ public class Film {
 		this.title = title;
 	}
 
-	public String getDesc() {
-		return desc;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setDesc(String desc) {
-		this.desc = desc;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public short getReleaseYear() {
@@ -103,12 +97,12 @@ public class Film {
 		this.langId = langId;
 	}
 
-	public int getRentDur() {
-		return rentDur;
+	public int getRentalDuration() {
+		return rentalDuration;
 	}
 
-	public void setRentDur(int rentDur) {
-		this.rentDur = rentDur;
+	public void setRentalDuration(int rentalDuration) {
+		this.rentalDuration = rentalDuration;
 	}
 
 	public double getRate() {
@@ -116,6 +110,7 @@ public class Film {
 	}
 
 	public void setRate(double rate) {
+		
 		this.rate = rate;
 	}
 
@@ -127,12 +122,12 @@ public class Film {
 		this.length = length;
 	}
 
-	public double getRepCost() {
-		return repCost;
+	public double getReplacementCost() {
+		return replacementCost;
 	}
 
-	public void setRepCost(double repCost) {
-		this.repCost = repCost;
+	public void setReplacementCost(double replacementCost) {
+		this.replacementCost = replacementCost;
 	}
 
 	public String getRating() {
@@ -143,18 +138,34 @@ public class Film {
 		this.rating = rating;
 	}
 
-	public String getFeatures() {
-		return features;
+	public String getSpecialFeatures() {
+		return specialFeatures;
 	}
 
-	public void setFeatures(String features) {
-		this.features = features;
+	public void setSpecialFeatures(String specialFeatures) {
+		this.specialFeatures = specialFeatures;
+	}
+
+	public List<Actor> getCast() {
+		return cast;
+	}
+
+	public void setCast(List<Actor> cast) {
+		this.cast = cast;
+	}
+
+	public String getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(String language) {
+		this.language = language;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(cast, desc, features, filmId, langId, length, rate, rating, releaseYear, rentDur, repCost,
-				title);
+		return Objects.hash(cast, description, specialFeatures, filmId, langId, length, rate, rating, releaseYear,
+				rentalDuration, replacementCost, title);
 	}
 
 	@Override
@@ -166,11 +177,13 @@ public class Film {
 		if (getClass() != obj.getClass())
 			return false;
 		Film other = (Film) obj;
-		return Objects.equals(cast, other.cast) && Objects.equals(desc, other.desc)
-				&& Objects.equals(features, other.features) && filmId == other.filmId && langId == other.langId
-				&& length == other.length && Double.doubleToLongBits(rate) == Double.doubleToLongBits(other.rate)
-				&& Objects.equals(rating, other.rating) && releaseYear == other.releaseYear && rentDur == other.rentDur
-				&& Double.doubleToLongBits(repCost) == Double.doubleToLongBits(other.repCost)
+		return Objects.equals(cast, other.cast) && Objects.equals(description, other.description)
+				&& Objects.equals(specialFeatures, other.specialFeatures) && filmId == other.filmId
+				&& langId == other.langId && length == other.length
+				&& Double.doubleToLongBits(rate) == Double.doubleToLongBits(other.rate)
+				&& Objects.equals(rating, other.rating) && releaseYear == other.releaseYear
+				&& rentalDuration == other.rentalDuration
+				&& Double.doubleToLongBits(replacementCost) == Double.doubleToLongBits(other.replacementCost)
 				&& Objects.equals(title, other.title);
 	}
 
@@ -185,9 +198,9 @@ public class Film {
 			builder.append(title);
 			builder.append(", ");
 		}
-		if (desc != null) {
+		if (description != null) {
 			builder.append("desc=");
-			builder.append(desc);
+			builder.append(description);
 			builder.append(", ");
 		}
 		builder.append("releaseYear=");
@@ -195,22 +208,22 @@ public class Film {
 		builder.append(", langId=");
 		builder.append(langId);
 		builder.append(", rentDur=");
-		builder.append(rentDur);
+		builder.append(rentalDuration);
 		builder.append(", rate=");
 		builder.append(rate);
 		builder.append(", length=");
 		builder.append(length);
 		builder.append(", repCost=");
-		builder.append(repCost);
+		builder.append(replacementCost);
 		builder.append(", ");
 		if (rating != null) {
 			builder.append("rating=");
 			builder.append(rating);
 			builder.append(", ");
 		}
-		if (features != null) {
+		if (specialFeatures != null) {
 			builder.append("features=");
-			builder.append(features);
+			builder.append(specialFeatures);
 			builder.append(", ");
 		}
 		if (cast != null) {

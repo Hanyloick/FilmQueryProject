@@ -6,11 +6,14 @@
 
 # Technologies Used
 
--JAVA
--SQL
--MAVEN
--Eclipse
--
+-JAVA<br>
+-SQL<br>
+-MAVEN<br>
+-Eclipse<br>
+-MAMP<br>
+-GIT/GitHub<br>
+-MySQL<br>
+-Terminal<br>
 
 # Lessons Learned
 <br>
