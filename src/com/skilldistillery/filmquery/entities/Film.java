@@ -11,6 +11,7 @@ public class Film {
 	private short releaseYear;
 	private int langId;
 	private int rentalDuration;
+//	private String condition;
 	private double rate;
 	private int length;
 	private double replacementCost;
@@ -18,23 +19,6 @@ public class Film {
 	private String specialFeatures;
 	private List<Actor> cast;
 	private String language;
-
-	public Film(int filmId, String title, String desc, short releaseYear, int langId, int rentDur, double rate,
-			int length, double repCost, String rating, String features, List<Actor> cast) {
-		super();
-		this.filmId = filmId;
-		this.title = title;
-		this.description = desc;
-		this.releaseYear = releaseYear;
-		this.langId = langId;
-		this.rentalDuration = rentDur;
-		this.rate = rate;
-		this.length = length;
-		this.replacementCost = repCost;
-		this.rating = rating;
-		this.specialFeatures = features;
-		this.cast = cast;
-	}
 
 	public Film() {
 
@@ -56,7 +40,26 @@ public class Film {
 	}
 	
 	
+//	
+//	public Film(int filmId, String title, String description, short releaseYear, int langId, int rentalDuration,
+//			String condition, double rate, int length, double replacementCost, String rating, String specialFeatures) {
+//		super();
+//		this.filmId = filmId;
+//		this.title = title;
+//		this.description = description;
+//		this.releaseYear = releaseYear;
+//		this.langId = langId;
+//		this.rentalDuration = rentalDuration;
+//		this.condition = condition;
+//		this.rate = rate;
+//		this.length = length;
+//		this.replacementCost = replacementCost;
+//		this.rating = rating;
+//		this.specialFeatures = specialFeatures;
+//	}
 	
+	
+
 	public int getFilmId() {
 		return filmId;
 	}

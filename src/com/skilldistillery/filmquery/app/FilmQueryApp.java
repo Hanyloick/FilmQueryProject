@@ -14,13 +14,12 @@ public class FilmQueryApp {
 
 	public static void main(String[] args) {
 		FilmQueryApp app = new FilmQueryApp();
-//		app.test();
 		app.launch();
 	}
 
 	private void launch() {
 		Scanner scanner = new Scanner(System.in);
-		
+
 		startUserInterface(scanner);
 		scanner.close();
 	}
@@ -33,15 +32,23 @@ public class FilmQueryApp {
 			int input = getValidInput(scanner, inputRangeStart, inputRangeEnd);
 			switch (input) {
 			case 1:
-				findFilmById(scanner);
-				break;
+				Film filmResult = findFilmById(scanner);
+				int rangeStart = 1, rangeEnd = 2;
+				if (filmResult != null) {
+					System.out.println("would you like to view all details of this/these film(s)? 1(Yes) or 2(No)");
+					if (getValidInput(scanner, inputRangeStart, inputRangeEnd) == 1) {
+						displayFilmDetails(filmResult);
+					} else {
+						System.out.println("There Are No Matches To This ID, Please Try Again.");
+					}
+					break;
+				}
 			case 2:
 				List<Film> searchResults = findFilmBySearch(scanner);
-				int rangeStart = 1, rangeEnd=2;
-				if(!searchResults.isEmpty()) {
+				if (!searchResults.isEmpty()) {
 					System.out.println("would you like to view all details of this/these film(s)? 1(Yes) or 2(No)");
-					if(getValidInput(scanner, inputRangeStart, inputRangeEnd) == 1) {
-					displayFilmDetails(searchResults);
+					if (getValidInput(scanner, inputRangeStart, inputRangeEnd) == 1) {
+						displayFilmsDetails(searchResults);
 					}
 				} else if (searchResults.isEmpty()) {
 					System.out.println("There Were No Results");
@@ -56,48 +63,57 @@ public class FilmQueryApp {
 
 	}
 
-	public void findFilmById(Scanner scanner) {
+	public Film findFilmById(Scanner scanner) {
 		System.out.println("Enter The Id Of The Film You're Searching For ");
 		int selection = getIntInput(scanner);
 		Film film = databaseAccessor.findFilmById(selection);
 
 		if (film != null) {
-			System.out.println(film.getTitle() + " " + film.getReleaseYear() + " " + film.getRating());
-			System.out.println(film.getDescription()); 
-			System.out.println(film.getCast());
-		} else {
-			System.out.println("Invalid Request, Try Again.");
+			System.out.println(film.getTitle());
 		}
+		return film;
 	}
 
 	public List<Film> findFilmBySearch(Scanner scanner) {
 		System.out.println("What Would You Like to Search?");
-		
+
 		String searchStatement = scanner.nextLine();
-		
+
 		List<Film> films = databaseAccessor.findFilmsByKeyword(searchStatement);
-		
-		if (!films.isEmpty()) {			
+
+		if (!films.isEmpty()) {
 			for (Film film : films) {
 				System.out.println("Title : " + film.getTitle());
 				System.out.println(" ");
 			}
-		
+
 		}
 		return films;
-		
+
 	}
 
-	public void displayFilmDetails(List<Film> films) {
-		for (Film film: films) {
-		System.out.println("Title : " + film.getTitle()); 
+	public void displayFilmsDetails(List<Film> films) {
+		for (Film film : films) {
+			System.out.println("Title : " + film.getTitle());
+			System.out.println("Year : " + film.getReleaseYear());
+			System.out.println("Rating : " + film.getRating());
+			System.out.println("Description : " + film.getDescription());
+			System.out.println("Category : " + databaseAccessor.findCategorybyFilmCode(film));
+			System.out.println("Language : " + databaseAccessor.findLanguageCodeTraslation(film));
+			System.out.println("Cast : " + databaseAccessor.findActorsByFilmId(film.getFilmId()));
+			System.out.println(" ");
+		}
+	}
+
+	public void displayFilmDetails(Film film) {
+		System.out.println("Title : " + film.getTitle());
 		System.out.println("Year : " + film.getReleaseYear());
 		System.out.println("Rating : " + film.getRating());
-		System.out.println("Description : " + film.getDescription());		
-		System.out.println("Language : "+ databaseAccessor.findLanguageCodeTraslation(film));
-		System.out.println("Cast = "+ databaseAccessor.findActorsByFilmId(film.getFilmId()));
+		System.out.println("Category : " + databaseAccessor.findCategorybyFilmCode(film));
+		System.out.println("Description : " + film.getDescription());
+		System.out.println("Language : " + databaseAccessor.findLanguageCodeTraslation(film));
+		System.out.println("Cast = " + databaseAccessor.findActorsByFilmId(film.getFilmId()));
 		System.out.println(" ");
-		}
 	}
 
 	private int getValidInput(Scanner scanner, int rangeStart, int rangeEnd) {
@@ -134,23 +150,4 @@ public class FilmQueryApp {
 		System.out.println("3.Exit the application.");
 		System.out.println(" ");
 	}
-
-//	private void test() {
-//		Film film = databaseAccessor.findFilmById(27);
-//		if (film != null) {
-//			System.out.println(film);
-//		} else {
-//			System.out.println("no film found");
-//		}
-//		
-//		Actor actor = databaseAccessor.findActorById(143);
-//		if (actor != null) {
-//			System.out.println(actor);
-//		} else {
-//			System.out.println("no actor found");
-//		}
-//		
-//		List<Actor> cast = databaseAccessor.findActorsByFilmId(10);
-//		System.out.println(cast);
-//	}
 }

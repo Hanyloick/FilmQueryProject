@@ -7,13 +7,22 @@ import com.skilldistillery.filmquery.entities.Actor;
 import com.skilldistillery.filmquery.entities.Film;
 
 public interface DatabaseAccessor {
-  Film findFilmById(int filmId);
-  Actor findActorById(int actorId);
-  List<Actor> findActorsByFilmId(int filmId);
-  List<Film> findFilmsByActorId(int actorId);
-  List<Film> findFilmsByKeyword(String keyword);
-  String findLanguageCodeTraslation(Film film);
-  String findCategorybyFilmCode(Film film);
-  
+	Film findFilmById(int filmId);
+
+	Actor findActorById(int actorId);
+
+	List<Actor> findActorsByFilmId(int filmId);
+
+	List<Film> findFilmsByActorId(int actorId);
+
+	List<Film> findFilmsByKeyword(String keyword);
+
+	String findLanguageCodeTraslation(Film film);
+
+	String findCategorybyFilmCode(Film film);
+
+//	List<Film> getAllCopysOfFilmWithCondition(List<Film> films);
+	
+	
 
 }
