@@ -4,8 +4,8 @@
 -The objective of this program is to allow the user to query a movie database by searching by a specific id or<br>
 -by a keyword. On run the user will first be presented with a menu, when selecting(entering)<br>
 -option 1 the user will be prompted to enter a id number to query the database for the film and data associated with the id number.<br>
--option 2 the user will be prompted to enter a keyword to search all titles and descriptions of films for said keyword. in the event <br>
--in the event no matches are found for either Id searches or keyword searches the user will be notified that there are no matches<br>
+-option 2 the user will be prompted to enter a keyword to search all titles and descriptions of films for said keyword. in the event
+-in the event no matches are found<br> for either Id searches or keyword searches the user will be notified that there are no matches<br>
 -and promped again.<br>
 -when matches for a query are found, the titles are displayed with a submenu that will allow the user to view farther details<br>
 -about the film, (language, category, date, rating).<br>
