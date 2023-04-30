@@ -30,8 +30,8 @@
 	-Set up dependencies in the pom.xml from MAVEN, and linking the application to the mysql database.<br>
 	-Use foreign keys to build relationships between tables.<br>
 	-Write SQL queries using JOIN/ON, WHEN/LIKE conditions.<br>
-	-Create Objects with data from a relational database.
-	-farther encapsulate data by not returning a reference to the original object but returning a copy<br>
+	-Create Objects with data from a relational database.<br>
+	-farther encapsulate data by not returning a reference to the original object but returning a copy
 	in getter methods.<br> 
  
 
