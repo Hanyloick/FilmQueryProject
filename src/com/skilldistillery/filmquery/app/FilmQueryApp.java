@@ -5,7 +5,6 @@ import java.util.Scanner;
 
 import com.skilldistillery.filmquery.database.DatabaseAccessor;
 import com.skilldistillery.filmquery.database.DatabaseAccessorObject;
-import com.skilldistillery.filmquery.entities.Actor;
 import com.skilldistillery.filmquery.entities.Film;
 
 public class FilmQueryApp {
@@ -33,21 +32,24 @@ public class FilmQueryApp {
 			switch (input) {
 			case 1:
 				Film filmResult = findFilmById(scanner);
-				int rangeStart = 1, rangeEnd = 2;
 				if (filmResult != null) {
 					System.out.println("would you like to view all details of this/these film(s)? 1(Yes) or 2(No)");
 					if (getValidInput(scanner, inputRangeStart, inputRangeEnd) == 1) {
-						displayFilmDetails(filmResult);
+						List<Film> idSearchResults = idSearchCopies(filmResult);
+						displayFilmsDetails(idSearchResults);
 					} else {
 						System.out.println("There Are No Matches To This ID, Please Try Again.");
 					}
 					break;
 				}
 			case 2:
-				List<Film> searchResults = findFilmBySearch(scanner);
+				System.out.println("What Would You Like to Search?");
+				String searchStatement = scanner.nextLine();
+				List<Film> searchResults = findFilmBySearch(searchStatement);
 				if (!searchResults.isEmpty()) {
 					System.out.println("would you like to view all details of this/these film(s)? 1(Yes) or 2(No)");
 					if (getValidInput(scanner, inputRangeStart, inputRangeEnd) == 1) {
+						searchResults = getCopyConditions(searchStatement);
 						displayFilmsDetails(searchResults);
 					}
 				} else if (searchResults.isEmpty()) {
@@ -63,7 +65,7 @@ public class FilmQueryApp {
 
 	}
 
-	public Film findFilmById(Scanner scanner) {
+	private Film findFilmById(Scanner scanner) {
 		System.out.println("Enter The Id Of The Film You're Searching For ");
 		int selection = getIntInput(scanner);
 		Film film = databaseAccessor.findFilmById(selection);
@@ -74,30 +76,36 @@ public class FilmQueryApp {
 		return film;
 	}
 
-	public List<Film> findFilmBySearch(Scanner scanner) {
-		System.out.println("What Would You Like to Search?");
-
-		String searchStatement = scanner.nextLine();
-
+	private List<Film> findFilmBySearch(String searchStatement) {
 		List<Film> films = databaseAccessor.findFilmsByKeyword(searchStatement);
-
 		if (!films.isEmpty()) {
 			for (Film film : films) {
 				System.out.println("Title : " + film.getTitle());
 				System.out.println(" ");
 			}
-
 		}
 		return films;
 
 	}
+	
+	private List<Film> getCopyConditions(String searchStatent) {
+		List<Film> films = databaseAccessor.findFilmsCopiesByKeyword(searchStatent);		
+		return films;
+		
+	}
+	
+	private List<Film> idSearchCopies(Film film) {
+		List<Film> films = databaseAccessor.findCopiesCondition(film);
+		return films;
+	}
 
-	public void displayFilmsDetails(List<Film> films) {
+	private void displayFilmsDetails(List<Film> films) {
 		for (Film film : films) {
 			System.out.println("Title : " + film.getTitle());
 			System.out.println("Year : " + film.getReleaseYear());
 			System.out.println("Rating : " + film.getRating());
 			System.out.println("Description : " + film.getDescription());
+			System.out.println("Condition : " + film.getCondition());
 			System.out.println("Category : " + databaseAccessor.findCategorybyFilmCode(film));
 			System.out.println("Language : " + databaseAccessor.findLanguageCodeTraslation(film));
 			System.out.println("Cast : " + databaseAccessor.findActorsByFilmId(film.getFilmId()));
@@ -105,14 +113,14 @@ public class FilmQueryApp {
 		}
 	}
 
-	public void displayFilmDetails(Film film) {
+	private void displayFilmDetails(Film film) {
 		System.out.println("Title : " + film.getTitle());
 		System.out.println("Year : " + film.getReleaseYear());
 		System.out.println("Rating : " + film.getRating());
-		System.out.println("Category : " + databaseAccessor.findCategorybyFilmCode(film));
+		System.out.println("Condition : " + databaseAccessor.findCopiesCondition(film));
 		System.out.println("Description : " + film.getDescription());
 		System.out.println("Language : " + databaseAccessor.findLanguageCodeTraslation(film));
-		System.out.println("Cast = " + databaseAccessor.findActorsByFilmId(film.getFilmId()));
+		System.out.println("Cast : " + databaseAccessor.findActorsByFilmId(film.getFilmId()));
 		System.out.println(" ");
 	}
 

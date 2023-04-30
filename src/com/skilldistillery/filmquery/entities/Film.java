@@ -11,7 +11,7 @@ public class Film {
 	private short releaseYear;
 	private int langId;
 	private int rentalDuration;
-//	private String condition;
+	private String condition;
 	private double rate;
 	private int length;
 	private double replacementCost;
@@ -38,30 +38,27 @@ public class Film {
 		this.rating = rating;
 		this.specialFeatures = features;
 	}
-	
-	
-//	
-//	public Film(int filmId, String title, String description, short releaseYear, int langId, int rentalDuration,
-//			String condition, double rate, int length, double replacementCost, String rating, String specialFeatures) {
-//		super();
-//		this.filmId = filmId;
-//		this.title = title;
-//		this.description = description;
-//		this.releaseYear = releaseYear;
-//		this.langId = langId;
-//		this.rentalDuration = rentalDuration;
-//		this.condition = condition;
-//		this.rate = rate;
-//		this.length = length;
-//		this.replacementCost = replacementCost;
-//		this.rating = rating;
-//		this.specialFeatures = specialFeatures;
-//	}
-	
-	
+
+	public Film(int filmId, String title, String description, short releaseYear, int langId, int rentalDuration,
+			String condition, double rate, int length, double replacementCost, String rating, String specialFeatures) {
+		super();
+		this.filmId = filmId;
+		this.title = title;
+		this.description = description;
+		this.releaseYear = releaseYear;
+		this.langId = langId;
+		this.rentalDuration = rentalDuration;
+		this.condition = condition;
+		this.rate = rate;
+		this.length = length;
+		this.replacementCost = replacementCost;
+		this.rating = rating;
+		this.specialFeatures = specialFeatures;
+	}
 
 	public int getFilmId() {
-		return filmId;
+		int id = filmId;
+		return id;
 	}
 
 	public void setFilmId(int filmId) {
@@ -69,7 +66,8 @@ public class Film {
 	}
 
 	public String getTitle() {
-		return title;
+		String titleCopy = title;
+		return titleCopy;
 	}
 
 	public void setTitle(String title) {
@@ -77,7 +75,8 @@ public class Film {
 	}
 
 	public String getDescription() {
-		return description;
+		String descriptionCopy = description;
+		return descriptionCopy;
 	}
 
 	public void setDescription(String description) {
@@ -85,7 +84,8 @@ public class Film {
 	}
 
 	public short getReleaseYear() {
-		return releaseYear;
+		short releaseYearCopy = releaseYear;
+		return releaseYearCopy;
 	}
 
 	public void setReleaseYear(short releaseYear) {
@@ -93,7 +93,8 @@ public class Film {
 	}
 
 	public int getLangId() {
-		return langId;
+		int langIdCopy = langId;
+		return langIdCopy;
 	}
 
 	public void setLangId(int langId) {
@@ -101,24 +102,35 @@ public class Film {
 	}
 
 	public int getRentalDuration() {
-		return rentalDuration;
+		int rentalDurationCopy = rentalDuration;
+		return rentalDurationCopy;
 	}
 
 	public void setRentalDuration(int rentalDuration) {
 		this.rentalDuration = rentalDuration;
 	}
 
+	public String getCondition() {
+		String conditionCopy = condition;
+		return conditionCopy;
+	}
+
+	public void setCondition(String condition) {
+		this.condition = condition;
+	}
+
 	public double getRate() {
-		return rate;
+		double rateCopy = rate;
+		return rateCopy;
 	}
 
 	public void setRate(double rate) {
-		
 		this.rate = rate;
 	}
 
 	public int getLength() {
-		return length;
+		int lengthCopy = length;
+		return lengthCopy;
 	}
 
 	public void setLength(int length) {
@@ -126,7 +138,8 @@ public class Film {
 	}
 
 	public double getReplacementCost() {
-		return replacementCost;
+		double replacementCostCopy = replacementCost;
+		return replacementCostCopy;
 	}
 
 	public void setReplacementCost(double replacementCost) {
@@ -134,7 +147,8 @@ public class Film {
 	}
 
 	public String getRating() {
-		return rating;
+		String ratingCopy = rating;
+		return ratingCopy;
 	}
 
 	public void setRating(String rating) {
@@ -142,7 +156,8 @@ public class Film {
 	}
 
 	public String getSpecialFeatures() {
-		return specialFeatures;
+		String specialFeaturesCopy = specialFeatures;
+		return specialFeaturesCopy;
 	}
 
 	public void setSpecialFeatures(String specialFeatures) {
@@ -150,7 +165,8 @@ public class Film {
 	}
 
 	public List<Actor> getCast() {
-		return cast;
+		List<Actor> castCopy = cast;
+		return castCopy;
 	}
 
 	public void setCast(List<Actor> cast) {
@@ -158,7 +174,8 @@ public class Film {
 	}
 
 	public String getLanguage() {
-		return language;
+		String languageCopy = language;
+		return languageCopy;
 	}
 
 	public void setLanguage(String language) {
