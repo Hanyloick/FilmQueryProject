@@ -9,19 +9,9 @@ public class Actor {
 	private String firstName;
 	private String lastName;
 	private List<Film> films;
-	
 
-	
-	public List<Film> getFilm() {
-		List<Film> copy = new ArrayList<Film>(films);
-		return copy;
+	public Actor() {
 	}
-
-	public void setFilm(List<Film> films) {
-		this.films = films;
-	}
-
-	public Actor() {}
 
 	public Actor(String firstName, String lastName) {
 		this.firstName = firstName;
@@ -31,6 +21,39 @@ public class Actor {
 	public Actor(int id, String firstName, String lastName) {
 		this.id = id;
 		this.firstName = firstName;
+		this.lastName = lastName;
+	}
+
+	public List<Film> getFilm() {
+		List<Film> copy = new ArrayList<Film>(films);
+		return copy;
+	}
+
+	public void setFilm(List<Film> films) {
+		this.films = films;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
 
@@ -70,29 +93,4 @@ public class Actor {
 		return builder.toString();
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	
-	
 }
