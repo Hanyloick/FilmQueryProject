@@ -25,6 +25,61 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 	}
 
 	@Override
+	public Actor findActorById(int actorId) {
+		Actor actor = null;
+
+		try {
+			Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+
+			String sqlStatement = "SELECT * FROM actor WHERE id = ?";
+			PreparedStatement preparedStatement = connection.prepareStatement(sqlStatement);
+			preparedStatement.setInt(1, actorId);
+			ResultSet actorResult = preparedStatement.executeQuery();
+			// while would be more than 1
+			if (actorResult.next()) {
+				int id = actorResult.getInt("id");
+				String firstName = actorResult.getString("first_name");
+				String lastName = actorResult.getString("last_name");
+
+				actor = new Actor(id, firstName, lastName);
+			}
+			actorResult.close();
+			preparedStatement.close();
+			connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return actor;
+	}
+
+	@Override
+	public List<Actor> findActorsByFilmId(int filmId) {
+		List<Actor> cast = new ArrayList<>();
+		try {
+			Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+			String sqlStaement = "SELECT actor.* FROM actor JOIN film_actor ON film_actor.actor_id = actor.id WHERE film_actor.film_id = ?";
+			PreparedStatement preparedStatement = connection.prepareStatement(sqlStaement);
+			preparedStatement.setInt(1, filmId);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			while (resultSet.next()) {
+				int id = resultSet.getInt("id");
+				String firstName = resultSet.getString("first_name");
+				String lastName = resultSet.getString("last_name");
+
+				Actor actor = new Actor(id, firstName, lastName);
+				cast.add(actor);
+			}
+			resultSet.close();
+			preparedStatement.close();
+			connection.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return cast;
+
+	}
+
+	@Override
 	public Film findFilmById(int filmId) {
 		Film film = null;
 
@@ -61,34 +116,6 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 	}
 
 	@Override
-	public Actor findActorById(int actorId) {
-		Actor actor = null;
-
-		try {
-			Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-
-			String sqlStatement = "SELECT * FROM actor WHERE id = ?";
-			PreparedStatement preparedStatement = connection.prepareStatement(sqlStatement);
-			preparedStatement.setInt(1, actorId);
-			ResultSet actorResult = preparedStatement.executeQuery();
-			// while would be more than 1
-			if (actorResult.next()) {
-				int id = actorResult.getInt("id");
-				String firstName = actorResult.getString("first_name");
-				String lastName = actorResult.getString("last_name");
-
-				actor = new Actor(id, firstName, lastName);
-			}
-			actorResult.close();
-			preparedStatement.close();
-			connection.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return actor;
-	}
-
-	@Override
 	public List<Film> findFilmsByActorId(int actorId) {
 		List<Film> films = new ArrayList<>();
 		try {
@@ -120,33 +147,6 @@ public class DatabaseAccessorObject implements DatabaseAccessor {
 			e.printStackTrace();
 		}
 		return films;
-	}
-
-	@Override
-	public List<Actor> findActorsByFilmId(int filmId) {
-		List<Actor> cast = new ArrayList<>();
-		try {
-			Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-			String sqlStaement = "SELECT actor.* FROM actor JOIN film_actor ON film_actor.actor_id = actor.id WHERE film_actor.film_id = ?";
-			PreparedStatement preparedStatement = connection.prepareStatement(sqlStaement);
-			preparedStatement.setInt(1, filmId);
-			ResultSet resultSet = preparedStatement.executeQuery();
-			while (resultSet.next()) {
-				int id = resultSet.getInt("id");
-				String firstName = resultSet.getString("first_name");
-				String lastName = resultSet.getString("last_name");
-
-				Actor actor = new Actor(id, firstName, lastName);
-				cast.add(actor);
-			}
-			resultSet.close();
-			preparedStatement.close();
-			connection.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return cast;
-
 	}
 
 	@Override
