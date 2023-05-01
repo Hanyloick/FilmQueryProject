@@ -12,23 +12,14 @@ public interface DatabaseAccessor {
 	List<Film> findFilmsByActorId(int actorId);
 
 	List<Film> findFilmsByKeyword(String keyword);
-
-	List<Film> findFilmsCopiesByKeyword(String keyword);
 	
 	List<Film> findCopiesCondition(Film film);
 	
 	Actor findActorById(int actorId);
 
 	List<Actor> findActorsByFilmId(int filmId);
-
-	String findLanguageCodeTraslation(Film film);
-
-	String findCategorybyFilmCode(Film film);
-
-
-
-
 	
+	public List<Film> getAllInfoOnAllCopiesFilms(String keyword);
 	
 
 }

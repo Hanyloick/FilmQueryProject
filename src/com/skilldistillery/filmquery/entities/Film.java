@@ -17,8 +17,9 @@ public class Film {
 	private double replacementCost;
 	private String rating;
 	private String specialFeatures;
-	private List<Actor> cast;
 	private String language;
+	private List<Actor> cast;
+	private String category;
 
 	public Film() {
 
@@ -54,6 +55,55 @@ public class Film {
 		this.replacementCost = replacementCost;
 		this.rating = rating;
 		this.specialFeatures = specialFeatures;
+	}
+
+	
+
+	public Film(int filmId, String title, String description, short releaseYear, int langId, int rentalDuration,
+			String condition, double rate, int length, double replacementCost, String rating, String specialFeatures,
+			String language, List<Actor> cast, String category) {
+		this.filmId = filmId;
+		this.title = title;
+		this.description = description;
+		this.releaseYear = releaseYear;
+		this.langId = langId;
+		this.rentalDuration = rentalDuration;
+		this.condition = condition;
+		this.rate = rate;
+		this.length = length;
+		this.replacementCost = replacementCost;
+		this.rating = rating;
+		this.specialFeatures = specialFeatures;
+		this.language = language;
+		this.cast = cast;
+		this.category = category;
+	}
+
+	public Film(int id, String title, String description, short releaseYear, int languageId, int rentalDuration,
+			double rate, int length, double replacementCost, String rating, String specialFeatures,
+			String language, List<Actor> cast, String category) {
+		this.filmId = id;
+		this.title = title;
+		this.description = description;
+		this.releaseYear = releaseYear;
+		this.langId = languageId;
+		this.rentalDuration = rentalDuration;
+		this.rate = rate;
+		this.length = length;
+		this.replacementCost = replacementCost;
+		this.rating = rating;
+		this.specialFeatures = specialFeatures;
+		this.language = language;
+		this.cast = cast;
+		this.category = category;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	public int getFilmId() {

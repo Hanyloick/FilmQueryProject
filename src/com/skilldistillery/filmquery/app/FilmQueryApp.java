@@ -36,11 +36,13 @@ public class FilmQueryApp {
 					System.out.println("would you like to view all details of this/these film(s)? 1(Yes) or 2(No)");
 					if (getValidInput(scanner, inputRangeStart, inputRangeEnd) == 1) {
 						List<Film> idSearchResults = idSearchCopies(filmResult);
-						displayFilmsDetails(idSearchResults);
-					} else {
-						System.out.println("There Are No Matches To This ID, Please Try Again.");
+						displayFilmsDetails(idSearchResults); 
 					}
 					break;
+				} 
+				else {
+					System.out.println("There Are No Matches To This ID, Please Try Again.");
+					continue;
 				}
 			case 2:
 				System.out.println("What Would You Like to Search?");
@@ -49,7 +51,7 @@ public class FilmQueryApp {
 				if (!searchResults.isEmpty()) {
 					System.out.println("would you like to view all details of this/these film(s)? 1(Yes) or 2(No)");
 					if (getValidInput(scanner, inputRangeStart, inputRangeEnd) == 1) {
-						searchResults = getCopyConditions(searchStatement);
+						searchResults =	getCopyConditions(searchStatement);
 						displayFilmsDetails(searchResults);
 					}
 				} else if (searchResults.isEmpty()) {
@@ -76,8 +78,8 @@ public class FilmQueryApp {
 		return film;
 	}
 
-	private List<Film> findFilmBySearch(String searchStatement) {
-		List<Film> films = databaseAccessor.findFilmsByKeyword(searchStatement);
+	private List<Film> findFilmBySearch(String searchStaement) {
+		List<Film> films = databaseAccessor.findFilmsByKeyword(searchStaement);
 		if (!films.isEmpty()) {
 			for (Film film : films) {
 				System.out.println("Title : " + film.getTitle());
@@ -89,7 +91,7 @@ public class FilmQueryApp {
 	}
 	
 	private List<Film> getCopyConditions(String searchStatent) {
-		List<Film> films = databaseAccessor.findFilmsCopiesByKeyword(searchStatent);		
+		List<Film> films = databaseAccessor.getAllInfoOnAllCopiesFilms(searchStatent);		
 		return films;
 		
 	}
@@ -98,7 +100,7 @@ public class FilmQueryApp {
 		List<Film> films = databaseAccessor.findCopiesCondition(film);
 		return films;
 	}
-
+	
 	private void displayFilmsDetails(List<Film> films) {
 		for (Film film : films) {
 			System.out.println("Title : " + film.getTitle());
@@ -106,24 +108,13 @@ public class FilmQueryApp {
 			System.out.println("Rating : " + film.getRating());
 			System.out.println("Description : " + film.getDescription());
 			System.out.println("Condition : " + film.getCondition());
-			System.out.println("Category : " + databaseAccessor.findCategorybyFilmCode(film));
-			System.out.println("Language : " + databaseAccessor.findLanguageCodeTraslation(film));
-			System.out.println("Cast : " + databaseAccessor.findActorsByFilmId(film.getFilmId()));
+			System.out.println("Category : " + film.getCategory());
+			System.out.println("Language : " + film.getLanguage());
+			System.out.println("Cast : " + film.getCast());
 			System.out.println(" ");
 		}
 	}
-
-	private void displayFilmDetails(Film film) {
-		System.out.println("Title : " + film.getTitle());
-		System.out.println("Year : " + film.getReleaseYear());
-		System.out.println("Rating : " + film.getRating());
-		System.out.println("Condition : " + databaseAccessor.findCopiesCondition(film));
-		System.out.println("Description : " + film.getDescription());
-		System.out.println("Language : " + databaseAccessor.findLanguageCodeTraslation(film));
-		System.out.println("Cast : " + databaseAccessor.findActorsByFilmId(film.getFilmId()));
-		System.out.println(" ");
-	}
-
+	
 	private int getValidInput(Scanner scanner, int rangeStart, int rangeEnd) {
 		// check for an int of one || 2
 		int input = 0;
